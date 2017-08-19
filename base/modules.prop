@@ -1,0 +1,4 @@
+PROJECT=base
+VERSION=1.0.0
+NAMESPACE=com.jpw.springex.base
+MODULES=ex01
