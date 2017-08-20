@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jpw.springex</groupId>
+		<artifactId>base</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.jpw.springex.base</groupId>
+	<artifactId>ex02</artifactId>
+	<name>ex02</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<main.class>com.jpw.springex.base.ex02.MainApp</main.class>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- add main class in jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+						    <addClasspath>true</addClasspath>
+							<mainClass>${main.class}</mainClass>
+						</manifest>
+
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- copy dependencies into $project/lib in mvn package -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- disable test -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

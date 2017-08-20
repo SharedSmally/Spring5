@@ -6,8 +6,19 @@
   <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>base</name>
+  
   <modules>
+    <!-- basic one -->
     <module>ex01</module>
+    <!-- deps in lib/ -->
+    <module>ex02</module>
+    <!-- deps in onejar -->
+    <module>ex03</module>
+    <!-- log2 -->
+    <module>ex04</module>
+    <!-- slf4j -->
+    <module>ex05</module>
+    <module>ex06</module>
   </modules>
   
   <properties>
