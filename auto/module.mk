@@ -1,5 +1,7 @@
 include modules.prop
+
 NS_DIR=$(subst .,/,${NAMESPACE})
+SUBDIR=${MODULES}
 
 main:${MODULES}
 
@@ -23,8 +25,20 @@ ${MODULES}:
 		cd $@  && mvn eclipse:clean && mvn eclipse:eclipse; \
 	fi
 
-.PHONY: ${MODULES}
+pkg:
+	mvn package
+	
+clean:
+	mvn clean
 
+####################################
+#	for dir in $(SUBDIRS); do \
+#		cd $${dir} && mvn clean; \
+#	done
+####################################
+
+.PHONY: ${MODULES}
+	
 print:
 	@echo "Project=${PROJECT}"
 	@echo "Version=${VERSION}"

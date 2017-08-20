@@ -1,5 +1,6 @@
 include modules.prop
 NS_DIR=$(subst .,/,${NAMESPACE})
+SUBDIRS=${MODULES}
 
 main:${MODULES}
 
@@ -22,8 +23,19 @@ ${MODULES}:
 		sed -i  's/%NAMESPACE%/${NAMESPACE}.$@/g'  $@/src/main/resources/SpringBeans.xml; \
 		cd $@  && mvn eclipse:clean && mvn eclipse:eclipse; \
 	fi
+	
+pkg:
+	mvn package
+	
+clean:
+	mvn clean
 
-.PHONY: ${MODULES}
+####################################
+#	for dir in $(SUBDIRS); do \
+#		cd $${dir} && mvn clean; \
+#	done	
+
+.PHONY: subdirs ${MODULES}
 
 print:
 	@echo "Project=${PROJECT}"
